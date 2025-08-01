@@ -37,7 +37,6 @@ bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
                     {% endfor %}
                 </div>
                 {% endif %}
-
                 <div>
                     <button type="submit"
                         class="w-full bg-blue-600 hover:bg-blue-700
@@ -46,6 +45,18 @@ bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
                     </button>
                 </div>
             </form>
+            <div class="text-center space-y-2">
+                <p class="text-sm text-gray-600">Don't have an account?
+                    <a href="{% url 'register' %}" class="font-medium
+                    text-blue-600 hover:text-blue-500 transition ease-in-out">
+                        Register here
+                    </a>
+                </p>
+                <p class="text-sm text-gray-500">
+                    <a href="{% url 'password_reset' %}" class="font-medium 
+                    text-blue-600 hover:text-blue-500 transition duration-150 ease-in-out">Forgot Password</a>
+                </p>
+            </div>
     </div>
 
 </div>
