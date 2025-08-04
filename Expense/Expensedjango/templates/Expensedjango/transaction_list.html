@@ -1,0 +1,22 @@
+{% extends 'expensedjango/base.html' %}
+{% block title %}
+All Transaction 
+{% endblock title %}
+
+{% block content %}
+    <h1 class="text-xl font-bold">Transaction page</h1>
+    <table class="min-w-full table-auto border-collapse border border-gray-300">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 border border-gray-300">Date</th>
+                <th class="px-4 py-2 border border-gray-300">Title</th>
+                <th class="px-4 py-2 border border-gray-300">Amount</th>
+                <th class="px-4 py-2 border border-gray-300">Type</th>
+
+            </tr>
+        </thead> 
+    </table>
+    {% for transaction in transactions %}
+       
+    {% endfor %}
+{% endblock content %}
