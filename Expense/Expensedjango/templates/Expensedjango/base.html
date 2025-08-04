@@ -11,14 +11,19 @@
         <title>{% block title %}{% endblock title %}</title>
     </head>
     <body class="bg-gray-100">
-        <nav class="bg-blue-500 p-4 text-white">
+        <nav class="bg-blue-500 p-4 flex text-white">
             {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="mx-4">Dashboard</a>
+            <a href="{% url 'transaction_add' %}" class="mx-4" >Add Transaction</a>
+            <a href="{% url 'transactions' %}" class="mx-4" >All Transaction</a>
+            
             <form id='logout-form' action="{% url 'logout' %}"
-            method="POST" style="display:inline;">
+            method="POST"  class="ml-auto inline mx-4">
             {% csrf_token %}
             <a href="#" onClick="document.getElementById
-            ('logout-form').submit();" class="ml-4">Logout</a>
+            ('logout-form').submit();" class="ml-4 align-left">Logout</a>
             </form>
+            
             {% else %}
             <a href="{% url 'login' %}" class="ml-4">Login</a>
             <a href="{% url 'register'%}" class="ml-4">Register</a>
