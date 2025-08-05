@@ -16,6 +16,7 @@
             <a href="{% url 'dashboard' %}" class="mx-4">Dashboard</a>
             <a href="{% url 'transaction_add' %}" class="mx-4" >Add Transaction</a>
             <a href="{% url 'transactions' %}" class="mx-4" >All Transaction</a>
+            <a href="{% url 'target' %}" class="mx-4" >Set Target</a>
             
             <form id='logout-form' action="{% url 'logout' %}"
             method="POST"  class="ml-auto inline mx-4">
@@ -31,6 +32,14 @@
             
         </nav>
         {% block content %}{% endblock content %}
+        {% if messages %}
+            <div class="fixed top-5 left-1/2 transform translate-x-1/2 w-96">
+                {% for message in messages %}
+                    <div class="bg-{{ message.tags }}-500 text-white
+                    p-3 rounded shadow-md mb-2 bg-blue-700">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
 
     </body>
 </html>
