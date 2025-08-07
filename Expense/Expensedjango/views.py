@@ -7,6 +7,7 @@ from .models import Transaction, Target
 from django.db.models import Sum 
 from .admin import TransactionResource
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 
 class RegisterView(View):
     def get(self, request, *args, **kwargs):
@@ -95,7 +96,27 @@ class TargetCreateView(LoginRequiredMixin, View):
             return redirect('dashboard')
         return render(request, 'Expensedjango/targetform.html', {'form':form})
 
+class TargetUpdateView(LoginRequiredMixin, View):
+    def get (self, request, pk, *args, **kwargs):
+        target = get_object_or_404(Target, pk=pk, user= request.user)
+        form = TargetForm(instance=target)
+        return render(request, 'Expensedjango/targetform.html', {'form':form})
 
+    def post(self, request, pk, *args, **kwargs):
+        target = get_object_or_404(Target, pk=pk, user=request.user)
+        form = TargetForm(request.POST, instance=target)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Target updated successfully')
+            return redirect('dashboard')
+        return render(request, 'Expensedjango/targetform.html', {'form':form})
+
+class TargetDeleteView(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        target = get_object_or_404(Target, pk=pk, user=request.user)
+        target.delete()
+        messages.success(request, 'Target deleted successfully')
+        return redirect('dashboard')    
 
 def export_transactions(request):
     user_transactions = Transaction.objects.filter(user = request.user)
